@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name = 'index.html')),
     url(r'^home/', TemplateView.as_view(template_name = 'index.html')),
     url(r'^users/', include('users.urls')),
+    url(r'^school/', include('school.urls')),
     
 	# url(r'^eRegister/', include('eRegister.foo.urls')),
 
