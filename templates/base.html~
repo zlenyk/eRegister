@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>eRegister</title>
+</head>
+
+<body>
+	<a href = '/'> MAIN PAGE  </a>
+	{% if not user.is_authenticated %}
+	<a href = '/users/login/'> LOGIN </a>
+	<a href = '/users/register/'> REGISTER </a>
+	{% else %}
+	<a href = '/users/logout/'> LOG OUT </a>
+	{% endif %}
+	{% if user.is_authenticated %}
+		Zalogowany jako {{user.first_name}} {{user.last_name}}
+	{% endif %}
+	{% block main %}
+	{% endblock %}
+</body>
+
+</html>

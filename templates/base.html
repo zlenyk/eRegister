@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title>eRegister</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href={% static "baseStyle.css" %} />
+
+</head>
+
+<body>
+	<h3> Dziennik elektroniczny </h3>
+	<div class="menu">
+	{% if user.is_authenticated %}
+		Zalogowany jako {{user.first_name}} {{user.last_name}}
+	{% endif %}
+		<ul>
+			<li><a href = '/'> MAIN PAGE  </a></li>
+		{% if not user.is_authenticated %}
+			<li><a href = '/users/login/'> LOGIN </a></li>
+			<li><a href = '/users/register/'> REGISTER </a></li>
+		{% else %}	
+			<li><a href = '/'> MY GROUPS </a></li>
+			<li><a href = '/'> MY LESSONS </a></li>
+			<li><a href = '/'> NOTES </a></li>
+			{% if perms.users.is_moderator %}
+			<li><a href = '/'> ONLY FOR MODERATORS </a></li>
+			{% endif %}
+			<li><a href = '/users/logout/'> LOG OUT </a></li>
+		{% endif %}
+		</ul>
+	</div>
+	<div id="page">
+		{% block main %}
+		{% endblock %}
+	</div>
+</body>
+
+</html>

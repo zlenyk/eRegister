@@ -1,0 +1,43 @@
+
+.menu{
+	float:left;
+	height: 90%;
+	border-style: solid;
+	border-width: 2px;
+}
+.menu ul{
+	margin: 0;
+	padding: 0;
+	width: 185px;
+	list-style-type: none;
+}
+
+.menu ul li a{
+	text-decoration: none;
+	border-style: solid;
+	border-color: white;
+	color: white;
+	padding: 10.5px 11px;
+	background-color: #005555;
+	display: block;
+}
+
+.menu ul li a:visited{
+	color: white;
+}
+
+.menu ul li a:hover, .menu ul li .current{
+	color: white;
+	background-color: #5FD367;
+}
+
+#page{
+	position:relative;
+	left:20px;
+	width:700px;
+	background-color:yellow;
+	border-style: solid;
+	border-width: 2px;
+	display:inline-block;
+	text-align: left;
+}
