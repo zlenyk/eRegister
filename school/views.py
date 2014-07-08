@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from school.forms import StudentForm,GroupForm
-
+from school.models import Group
 def add_group(request):
 	if request.method == 'POST':
 		group_form = GroupForm(request.POST)
@@ -24,9 +24,14 @@ def add_student(request):
 
 def search_group(request):
 	if request.method == 'POST':
-		return HttpResponseRedirect('/home/')
+		name = request.POST['name']
+		group = Group.get_group_by_name(name)
+		if group == None:
+			return render(request,'school/search_group.html',{'error':True})
+		else:
+			return render(request, 'school/show_group.html',{'group':group})
 	else:
-		return render(request,'school/search_group.html')
+		return render(request,'school/search_group.html',{'error':False})
 
 def manage_groups(request):
 	return HttpResponseRedirect('/home/')

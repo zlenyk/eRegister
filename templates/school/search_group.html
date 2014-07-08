@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block main %}
 	SEARCH GROUP:
+	{% if error == True %}
+		<p><b>Such group does not exist</b></p>
+	{% endif %}
 	<form action="/school/search_group/" method="POST">
 		{% csrf_token %}
 		<p>Name: <input type="text" name="name"/>
