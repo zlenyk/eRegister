@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block main %}
+	SEARCH GROUP:
+	<form action="/school/search_group/" method="POST">
+		{% csrf_token %}
+		<p>Name: <input type="text" name="name"/>
+		<p><input type="submit" value="search"/>
+	</form>
+{% endblock %}

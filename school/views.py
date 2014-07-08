@@ -21,3 +21,12 @@ def add_student(request):
 	else:
 		student_form = StudentForm()
 		return render(request, 'school/add_student.html',{'form':student_form})
+
+def search_group(request):
+	if request.method == 'POST':
+		return HttpResponseRedirect('/home/')
+	else:
+		return render(request,'school/search_group.html')
+
+def manage_groups(request):
+	return HttpResponseRedirect('/home/')

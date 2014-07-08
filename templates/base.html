@@ -24,8 +24,9 @@
 			{% endif %}
 			<li><a href = '/'> NOTES </a></li>
 			{% if perms.users.is_moderator %}
-			<li><a href = '/school/add_group/'> ADD GROUP</a></li>
-			<li><a href = '/school/add_student/'> ADD STUDENT</a></li>
+			<li><a href = '/school/add_group/'> ADD GROUP </a></li>
+			<li><a href = '/school/add_student/'> ADD STUDENT </a></li>
+			<li><a href = '/school/search_group/'> MANAGE GROUPS </a></li>
 			{% endif %}
 			<li><a href = '/users/logout/'> LOG OUT </a></li>
 		{% endif %}
