@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from school.models import Student
+from school.models import Student,Group
 
 class StudentForm(ModelForm):
 	class Meta:
@@ -8,3 +8,11 @@ class StudentForm(ModelForm):
 	
 	def	save_student(self):
 		return Student.create_student(self)
+
+class GroupForm(ModelForm):
+	class Meta:
+		model = Group
+		fields = ['name']
+
+	def save_group(self):
+		return Group.create_group(self)

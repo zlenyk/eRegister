@@ -17,15 +17,32 @@ class Student(models.Model):
 		return Student.objects.get(first_name=first,last_name=last)
 
 	def __unicode__(self):
-		return self.name
+		return self.first_name + ' ' + self.last_name
 
+####################Lector##########################
 class Lector(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
 
 	def __unicode__(self):
-		return self.name
+		return self.first_name + ' ' + self.last_name
 
+###################Group##############################
 class Group(models.Model):
-	lector = models.OneToOneField(Lector,primary_key=True)
+	name = models.CharField(max_length=150,unique=True)
+	lector = models.ForeignKey(Lector,null=True,default=None,blank=True)
 	students = models.ManyToManyField(Student)
+
+	@staticmethod
+	def group_exists(name):
+		return Group.objects.filter(name=name).count() != 0
+
+	@staticmethod 
+	def create_group(group_form):
+		name = group_form.cleaned_data['name']
+		if not Group.group_exists(name):
+			Group(name=name).save()
+		return Group.objects.get(name=name)
+	
+	def __unicode__(self):
+		return self.name

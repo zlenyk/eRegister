@@ -1,9 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from school.forms import StudentForm
+from school.forms import StudentForm,GroupForm
 
 def add_group(request):
-	return render(request, 'school/add_group.html')
+	if request.method == 'POST':
+		group_form = GroupForm(request.POST)
+		if group_form.is_valid():
+			group_form.save_group()
+			return HttpResponseRedirect('/home/')
+	else:
+		group_form = GroupForm()
+		return render(request, 'school/add_group.html',{'form':group_form})
 
 def add_student(request):
 	if request.method == 'POST':
