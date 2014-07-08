@@ -1,4 +1,5 @@
 eRegister
 =========
 
-e-register for Poliglota language school.
+E-register for language school. Contains basic functionality.
+In development.
