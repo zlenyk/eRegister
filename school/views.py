@@ -22,6 +22,9 @@ def add_student(request):
 		student_form = StudentForm()
 		return render(request, 'school/add_student.html',{'form':student_form})
 
+def show_group(request,group):
+	return render(request,'school/show_group.html',{'group':group})
+
 def search_group(request):
 	if request.method == 'POST':
 		name = request.POST['name']

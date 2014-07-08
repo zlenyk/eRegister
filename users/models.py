@@ -17,7 +17,9 @@ class UserProfile(User):
 		
 		group = Group.objects.get(name='Lectors')
 		group.user_set.add(new_user)
-
+		Lector.create_lector(register_form.cleaned_data['first_name'],
+							register_form.cleaned_data['last_name']
+							)
 		return new_user
 
 	@staticmethod

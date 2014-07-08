@@ -12,7 +12,7 @@ class StudentForm(ModelForm):
 class GroupForm(ModelForm):
 	class Meta:
 		model = Group
-		fields = ['name']
+		fields = ['name','lector','students']
 
 	def save_group(self):
 		return Group.create_group(self)

@@ -24,6 +24,11 @@ class Lector(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
 
+	@staticmethod
+	def create_lector(first,last):
+		Lector(first_name=first,last_name=last).save()
+		return Lector.objects.get(first_name=first,last_name=last)
+
 	def __unicode__(self):
 		return self.first_name + ' ' + self.last_name
 
@@ -50,6 +55,12 @@ class Group(models.Model):
 		if not Group.group_exists(name):
 			Group(name=name).save()
 		return Group.get_group_by_name(name)
+	
+	def get_name(self):
+		return self.name
+	
+	def get_lector(self):
+		return self.lector
 	
 	def __unicode__(self):
 		return self.name
