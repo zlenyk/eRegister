@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 ADD GROUP
-	<form action="/school/add_group/" method="POST">
+	<form action="/school/create_group/" method="POST">
 		{% csrf_token %}
 		{{form.as_p}}
 		<input type="submit" value="SAVE"/>
