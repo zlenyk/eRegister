@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
-	SEARCH GROUP:
+	SEARCH STUDENT:
 	{% if error == True %}
-		<p><b>Such group does not exist</b></p>
+		<p><b>Such student does not exist</b></p>
 	{% endif %}
-	<form action="/school/search_group/" method="POST">
+	<form action="/school/search_student/" method="POST">
 		{% csrf_token %}
 		{{form.as_p}}
 		<p><input type="submit" value="search"/>

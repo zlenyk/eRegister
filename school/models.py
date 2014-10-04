@@ -5,19 +5,15 @@ class Student(models.Model):
 	last_name = models.CharField(max_length=100)
 
 	@staticmethod
-	def student_exists(form):
-		first = form.cleaned_data['first_name']
-		last = form.cleaned_data['last_name']	
-		return Student.objects.filter(first_name=first,last_name=last).count() != 0
-
+	def student_exists(f,l):
+		return Student.objects.filter(first_name=f,last_name=l).count() != 0
+	
 	@staticmethod
-	def get_student(form):
-		if not student_exists(form):
+	def get_student_by_name(f,l):
+		if not Student.student_exists(f,l):
 			return None
-		first = form.cleaned_data['first_name']
-		last = form.cleaned_data['last_name']
-		return Student.objects.get(first_name=first,last_name=last)
-
+		return Student.objects.get(first_name=f,last_name=l)
+		
 	def __unicode__(self):
 		return self.first_name + ' ' + self.last_name
 
@@ -50,26 +46,16 @@ class Group(models.Model):
 
 	@staticmethod
 	def get_group_by_name(name):
-		if Group.group_exists(name):
-			return Group.objects.get(name=name)
-		else:
+		if not Group.group_exists(name):
 			return None
+		return Group.objects.get(name=name)
 
 	@staticmethod
 	def get_group_by_id(id):
-		if Group.group_id_exists(id):
-			return Group.objects.get(id=id)
-		else:
+		if not Group.group_id_exists(id):
 			return None
+		return Group.objects.get(id=id)
 
-	@staticmethod 
-	def create_group(group_form):
-		name = group_form.cleaned_data['name']
-		lector = group_form.cleaned_data['lector']
-		if not Group.group_exists(name):
-			Group(name=name,lector=lector).save()
-		return Group.get_group_by_name(name)
-	
 	def get_name(self):
 		return self.name
 	
