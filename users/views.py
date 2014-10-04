@@ -38,8 +38,9 @@ def register(request):
 		if register_form.is_valid():
 			register_form.save_user()
 			return HttpResponseRedirect('/home/')
+		else:
+			return render(request, 'users/register.html', {'form': RegisterForm(),'error':True})
 	else:
-		register_form = RegisterForm()
-        return render(request, 'users/register.html', {'form': register_form})
+		return render(request, 'users/register.html', {'form': RegisterForm()})
 
 

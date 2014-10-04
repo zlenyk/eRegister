@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load url from future %}
 {% block main %}
+	{% if error == True %}
+		<p><b>Error</b></p>
+	{% endif %}
 	<form action="/users/register/" method="POST">
     {% csrf_token %}
 	<table>
