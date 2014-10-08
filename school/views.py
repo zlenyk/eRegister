@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from school.forms import CreateStudentForm,SearchStudentForm,CreateGroupForm,SearchGroupForm
+from school.forms import *
 from school.models import Group,Student
 
 def create_group(request):
@@ -32,14 +32,14 @@ def search_group(request):
 	if request.method == 'POST':
 		group_form = SearchGroupForm(request.POST)
 		if group_form.is_valid():
-			group = group_form.retrieve_group()	
+			group = group_form.retrieve_group()
 			if group == None:
 				return render(request,'school/search_group.html',{'error':True,'form':SearchGroupForm()})
 			else:
 				return show_group(request,group)
 		else:
 			return render(request,'school/search_group.html',{'error':True,'form':SearchGroupForm()})
-			
+
 	else:
 		return render(request,'school/search_group.html',{'error':False,'form':SearchGroupForm()})
 
@@ -60,3 +60,19 @@ def search_student(request):
 	else:
 		return render(request,'school/search_student.html',{'error':False,'form':SearchStudentForm})
 
+def show_lector(request,lector):
+	return render(request,'school/show_lector.html',{'lector':lector})
+
+def search_lector(request):
+	if request.method == 'POST':
+		lector_form = SearchLectorForm(request.POST)
+		if lector_form.is_valid():
+			lector = lector_form.retrieve_lector()
+			if lector == None:
+				return render(request,'school/search_lector.html',{'error':True,'form':SearchLectorForm})
+			else:
+				return show_lector(request,lector)
+		else:
+			return render(request,'school/search_lector.html',{'error':True,'form':SearchLectorForm})
+	else:
+		return render(request,'school/search_lector.html',{'error':False,'form':SearchLectorForm})

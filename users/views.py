@@ -32,7 +32,7 @@ def logout(request):
 def register(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/home/')
-    
+
 	if request.method == 'POST':
 		register_form = RegisterForm(request.POST)
 		if register_form.is_valid():
@@ -42,5 +42,3 @@ def register(request):
 			return render(request, 'users/register.html', {'form': RegisterForm(),'error':True})
 	else:
 		return render(request, 'users/register.html', {'form': RegisterForm()})
-
-

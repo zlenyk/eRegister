@@ -3,17 +3,16 @@ from django.db import models
 class Student(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
+	@staticmethod
+	def exist(f,l):
+		return Student.objects.filter(first_name=f,last_name=l).count() != 0
 
 	@staticmethod
-	def student_exists(f,l):
-		return Student.objects.filter(first_name=f,last_name=l).count() != 0
-	
-	@staticmethod
-	def get_student_by_name(f,l):
-		if not Student.student_exists(f,l):
+	def get_by_name(f,l):
+		if not Student.exist(f,l):
 			return None
 		return Student.objects.get(first_name=f,last_name=l)
-		
+
 	def __unicode__(self):
 		return self.first_name + ' ' + self.last_name
 
@@ -21,6 +20,16 @@ class Student(models.Model):
 class Lector(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
+
+	@staticmethod
+	def exist(f,l):
+		return Lector.objects.filter(first_name=f,last_name=l).count() != 0
+
+	@staticmethod
+	def get_by_name(f,l):
+		if not Lector.exist(f,l):
+			return None
+		return Lector.objects.get(first_name=f,last_name=l)
 
 	@staticmethod
 	def create_lector(first,last):
@@ -45,7 +54,7 @@ class Group(models.Model):
 		return Group.objects.filter(id=id).count() != 0
 
 	@staticmethod
-	def get_group_by_name(name):
+	def get_by_name(name):
 		if not Group.group_exists(name):
 			return None
 		return Group.objects.get(name=name)
@@ -58,9 +67,9 @@ class Group(models.Model):
 
 	def get_name(self):
 		return self.name
-	
+
 	def get_lector(self):
 		return self.lector
-	
+
 	def __unicode__(self):
 		return self.name
