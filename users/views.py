@@ -29,16 +29,16 @@ def logout(request):
 	auth.logout(request)
 	return HttpResponseRedirect('/home/')
 
-def register(request):
-	if request.user.is_authenticated():
-		return HttpResponseRedirect('/home/')
-
-	if request.method == 'POST':
-		register_form = RegisterForm(request.POST)
-		if register_form.is_valid():
-			register_form.save_user()
-			return HttpResponseRedirect('/home/')
-		else:
-			return render(request, 'users/register.html', {'form': RegisterForm(),'error':True})
-	else:
-		return render(request, 'users/register.html', {'form': RegisterForm()})
+#def register(request):
+#	if request.user.is_authenticated():
+#		return HttpResponseRedirect('/home/')
+#
+#	if request.method == 'POST':
+#		register_form = RegisterForm(request.POST)
+#		if register_form.is_valid():
+#			register_form.save_user()
+#			return HttpResponseRedirect('/home/')
+#		else:
+#			return render(request, 'users/register.html', {'form': RegisterForm(),'error':True})
+#	else:
+#		return render(request, 'users/register.html', {'form': RegisterForm()})

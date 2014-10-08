@@ -16,8 +16,8 @@
 			<li><a href = '/'> MAIN PAGE  </a></li>
 		{% if not user.is_authenticated %}
 			<li><a href = '/users/login/'> LOGIN </a></li>
-			<li><a href = '/users/register/'> REGISTER </a></li>
-		{% else %}	
+	<!--		<li><a href = '/users/register/'> REGISTER </a></li> -->
+		{% else %}
 			{% if perms.users.is_lector %}
 			<li><a href = '/'> MY GROUPS </a></li>
 			<li><a href = '/'> MY LESSONS </a></li>
