@@ -1,4 +1,5 @@
 from django.db import models
+from finances.models import Income,Outcome
 
 class Student(models.Model):
 	first_name = models.CharField(max_length=100)
@@ -12,6 +13,13 @@ class Student(models.Model):
 		if not Student.exist(f,l):
 			return None
 		return Student.objects.get(first_name=f,last_name=l)
+
+	@staticmethod
+	def get_student_by_id(id):
+		return Student.objects.get(id=id)
+		
+	def get_student_payments(self):
+		return Income.get_student_incomes(self.id)
 
 	def __unicode__(self):
 		return self.first_name + ' ' + self.last_name

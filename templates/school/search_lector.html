@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
-	SEARCH LECTOR:
-	{% if error == True %}
-		<p><b>Such lector does not exist</b></p>
+	{% if lector == None %}
+		{% with search_path="/school/search_lector/" %}
+		{% include "reusable/school/search_lector_template.html" %}
+		{% endwith %}
+	{% else %}
+		{% include "reusable/school/show_lector_template.html" %}
 	{% endif %}
-	<form action="/school/search_lector/" method="POST">	
-		{% csrf_token %}
-		{{form.as_p}}
-		<p><input type="submit" value="search"/>
-	</form>
 {% endblock %}

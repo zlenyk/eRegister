@@ -1,0 +1,9 @@
+	SEARCH LECTOR:
+	{% if error == True %}
+		<p><b>Such lector does not exist</b></p>
+	{% endif %}
+	<form action={{search_path}} method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<p><input type="submit" value="search"/>
+	</form>

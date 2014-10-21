@@ -1,8 +1,13 @@
 <html>
 <head>
 	<title>eRegister</title>
+
 	{% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href={% static "baseStyle.css" %} />
+	<link rel="stylesheet" href={% static "baseStyle.css" %} />
+	<link rel="stylesheet" href={% static "jquery/jquery-ui-1.11.1.custom/jquery-ui.min.css" %}>
+	<script src={% static "jquery/jquery-1.11.1.min.js" %}></script>
+	<script src={% static "jquery/jquery-ui-1.11.1.custom/jquery-ui.min.js" %}></script>
+	<script type="text/javascript" src={% static "jquery/jquery-ui-1.11.1.custom/jquery-ui.js" %}></script>
 
 </head>
 
@@ -22,13 +27,13 @@
 			<li><a href = '/'> MY GROUPS </a></li>
 			<li><a href = '/'> MY LESSONS </a></li>
 			{% endif %}
-			<li><a href = '/'> NOTES </a></li>
 			{% if perms.users.is_moderator %}
 			<li><a href = '/school/create_group/'> CREATE GROUP </a></li>
 			<li><a href = '/school/create_student/'> CREATE STUDENT </a></li>
 			<li><a href = '/school/search_group/'> MANAGE GROUPS </a></li>
 			<li><a href = '/school/search_lector/'> SEARCH LECTOR </a></li>
 			<li><a href = '/school/search_student/'> SEARCH STUDENT </a></li>
+			<li><a href = '/finances/add_payment/'> ADD PAYMENT </a></li>
 			{% endif %}
 			<li><a href = '/users/logout/'> LOG OUT </a></li>
 		{% endif %}

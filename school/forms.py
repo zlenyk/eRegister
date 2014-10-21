@@ -28,7 +28,7 @@ class SearchStudentForm(ModelForm):
 	def retrieve_student(self):
 		first_name = self.cleaned_data.get('first_name')
 		last_name = self.cleaned_data.get('last_name')
-		return Student.get_student_by_name(first_name,last_name)
+		return Student.get_by_name(first_name,last_name)
 ###################
 ####################
 class SearchLectorForm(ModelForm):

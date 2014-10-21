@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+	{% if student == None %}
+		{% with search_path="/finances/search_student_for_payment/" %}
+		{% include "reusable/school/search_student_template.html" %}
+		{% endwith %}
+	{% else %}
+		<script>
+			$(function() {
+					$( "#datepicker" ).datepicker();
+			});
+		</script>
+		ADD PAYMENT:
+		<form action="/finances/add_payment/" method="POST">
+			{% csrf_token %}
+			<p>Dates: <input type="text" id="datepicker"></p>
+			<p><input type="submit" value="add" />
+		</form>
+	{% endif %}
+
+{% endblock %}

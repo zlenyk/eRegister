@@ -8,7 +8,8 @@ urlpatterns = patterns('',
     url(r'^home/', TemplateView.as_view(template_name = 'index.html')),
     url(r'^users/', include('users.urls')),
     url(r'^school/', include('school.urls')),
-    
+    url(r'^finances/', include('finances.urls')),
+
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

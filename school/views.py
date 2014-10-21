@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from school.forms import *
 from school.models import Group,Student
+from django.core.urlresolvers import reverse
 
 def create_group(request):
 	if request.method == 'POST':
@@ -43,36 +44,28 @@ def search_group(request):
 	else:
 		return render(request,'school/search_group.html',{'error':False,'form':SearchGroupForm()})
 
-def show_student(request,student):
-	return render(request,'school/show_student.html',{'student':student})
-
-def search_student(request):
+def search_student_module(request,url):
+	student = None
+	error = False
 	if request.method == 'POST':
 		student_form = SearchStudentForm(request.POST)
 		if student_form.is_valid():
 			student = student_form.retrieve_student()
 			if student == None:
-				return render(request,'school/search_student.html',{'error':True,'form':SearchStudentForm})
-			else:
-				return show_student(request,student)
+				error = True
 		else:
-			return render(request,'school/search_student.html',{'error':True,'form':SearchStudentForm})
-	else:
-		return render(request,'school/search_student.html',{'error':False,'form':SearchStudentForm})
+			error = True
+	return render(request,url,{'error':error,'form':SearchStudentForm,'student':student})
 
-def show_lector(request,lector):
-	return render(request,'school/show_lector.html',{'lector':lector})
-
-def search_lector(request):
+def search_lector_module(request,url):
+	lector = None
+	error = False
 	if request.method == 'POST':
 		lector_form = SearchLectorForm(request.POST)
 		if lector_form.is_valid():
 			lector = lector_form.retrieve_lector()
 			if lector == None:
-				return render(request,'school/search_lector.html',{'error':True,'form':SearchLectorForm})
-			else:
-				return show_lector(request,lector)
+				error = True
 		else:
-			return render(request,'school/search_lector.html',{'error':True,'form':SearchLectorForm})
-	else:
-		return render(request,'school/search_lector.html',{'error':False,'form':SearchLectorForm})
+			error = True
+	return render(request,url,{'error':error,'form':SearchLectorForm,'lector':lector})

@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
-	SEARCH STUDENT:
-	{% if error == True %}
-		<p><b>Such student does not exist</b></p>
+	{% if student == None %}
+		{% with search_path="/school/search_student/" %}
+		{% include "reusable/school/search_student_template.html" %}
+		{% endwith %}
+	{% else %}
+		{% include "reusable/school/show_student_template.html" %}
 	{% endif %}
-	<form action="/school/search_student/" method="POST">
-		{% csrf_token %}
-		{{form.as_p}}
-		<p><input type="submit" value="search"/>
-	</form>
 {% endblock %}
