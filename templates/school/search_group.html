@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% block main %}
-	SEARCH GROUP:
-	{% if error == True %}
-		<p><b>Such group does not exist</b></p>
+	{% if group == None %}
+		{% with search_path="/school/search_group/" %}
+		{% include "reusable/school/search_group_template.html" %}
+		{% endwith %}
+	{% else %}
+		{% include "reusable/school/show_group_template.html" %}
 	{% endif %}
-	<form action="/school/search_group/" method="POST">
-		{% csrf_token %}
-		{{form.as_p}}
-		<p><input type="submit" value="search"/>
-	</form>
+
 {% endblock %}

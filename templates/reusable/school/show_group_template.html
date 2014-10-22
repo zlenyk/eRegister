@@ -1,0 +1,5 @@
+<p>{{group.name}}</p>
+<p>Lector: {{group.lector}}</p>
+{% for student in group.students.all %}
+	<li>{{student}}<li>
+{% endfor %}

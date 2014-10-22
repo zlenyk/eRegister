@@ -7,13 +7,15 @@
 	{% else %}
 		<script>
 			$(function() {
-					$( "#datepicker" ).datepicker();
+					$( "#datepicker" ).datepicker({dateFormat: "dd.mm.yy"});
 			});
 		</script>
 		ADD PAYMENT:
 		<form action="/finances/add_payment/" method="POST">
 			{% csrf_token %}
-			<p>Dates: <input type="text" id="datepicker"></p>
+			<p>Dates: <input type="text" id="datepicker" name="date"></p>
+			<p>Amount: <input type="text" name="amount"></p>
+			<input type="hidden" name="student_id" value={{student.id}} />
 			<p><input type="submit" value="add" />
 		</form>
 	{% endif %}

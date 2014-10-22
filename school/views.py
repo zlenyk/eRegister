@@ -26,23 +26,18 @@ def create_student(request):
 		student_form = CreateStudentForm()
 		return render(request, 'school/create_student.html',{'error':False,'form':student_form})
 
-def show_group(request,group):
-	return render(request,'school/show_group.html',{'group':group})
-
-def search_group(request):
+def search_group_module(request,url):
+	group = None
+	error = False
 	if request.method == 'POST':
 		group_form = SearchGroupForm(request.POST)
 		if group_form.is_valid():
 			group = group_form.retrieve_group()
 			if group == None:
-				return render(request,'school/search_group.html',{'error':True,'form':SearchGroupForm()})
-			else:
-				return show_group(request,group)
+				error = True
 		else:
-			return render(request,'school/search_group.html',{'error':True,'form':SearchGroupForm()})
-
-	else:
-		return render(request,'school/search_group.html',{'error':False,'form':SearchGroupForm()})
+			error = True
+	return render(request,url,{'error':error,'form':SearchGroupForm(),'group':group})
 
 def search_student_module(request,url):
 	student = None
