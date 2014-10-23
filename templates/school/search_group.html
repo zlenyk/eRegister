@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 	{% if group == None %}
-		{% with search_path="/school/search_group/" %}
+		{% with template_path="school/search_group.html" %}
 		{% include "reusable/school/search_group_template.html" %}
 		{% endwith %}
 	{% else %}

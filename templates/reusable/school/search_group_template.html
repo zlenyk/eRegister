@@ -2,8 +2,9 @@ SEARCH GROUP:
 {% if error == True %}
 	<p><b>Such group does not exist</b></p>
 {% endif %}
-<form action={{search_path}} method="POST">
+<form action="/school/search_group/" method="POST">
 	{% csrf_token %}
 	{{form.as_p}}
+        <input type="hidden" name="template_path" value={{template_path}}/>
 	<p><input type="submit" value="search"/>
 </form>

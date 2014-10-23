@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 	{% if lector == None %}
-		{% with search_path="/school/search_lector/" %}
+		{% with template_path="school/search_lector.html" %}
 		{% include "reusable/school/search_lector_template.html" %}
 		{% endwith %}
 	{% else %}

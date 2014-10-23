@@ -2,9 +2,9 @@ SEARCH STUDENT:
 {% if error == True %}
   <p><b>Such student does not exist</b></p>
 {% endif %}
-<form action={{search_path}} method="POST">
+<form action="/school/search_student/" method="POST">
   {% csrf_token %}
   {{form.as_p}}
-  <input type="hidden" name="path" value={{request.path}}>
+  <input type="hidden" name="template_path" value={{template_path}}>
   <p><input type="submit" value="search"/>
 </form>

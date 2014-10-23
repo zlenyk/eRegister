@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 	{% if student == None %}
-		{% with search_path="/finances/search_student_for_payment/" %}
+		{% with template_path="finances/add_payment.html" %}
 		{% include "reusable/school/search_student_template.html" %}
 		{% endwith %}
 	{% else %}
