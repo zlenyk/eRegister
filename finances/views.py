@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from datetime import datetime
 from school.forms import *
 from school import views as school_views
-from school.forms import *
+from finances.forms import *
 
 def add_payment_page(request):
 	return render(request,"finances/add_payment_page.html",{'form':SearchStudentForm,'student':None,'error':False})
@@ -13,7 +13,10 @@ def add_payment(request):
 		date_as_string = request.POST['date']
 		date = datetime.strptime(date_as_string,"%d.%m.%Y")
 		amount = request.POST['amount']
+		title = request.POST['title']
 		student_id = request.POST['student_id']
+		income = Income(date = date,amount=amount,student_id=student_id,title=title)
+		form = AddPaymentForm(instance=income)
+		if form.is_valid():
+			form.save()
 		return HttpResponseRedirect('/home/')
-	else:
-		return HttpResponseRedirect('/finances/search_student_for_payment/')

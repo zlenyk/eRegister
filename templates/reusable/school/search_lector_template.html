@@ -1,10 +1,13 @@
-	SEARCH LECTOR:
-	{% if error == True %}
-		<p><b>Such lector does not exist</b></p>
-	{% endif %}
-	<form action="/school/search_lector/" method="POST">
-		{% csrf_token %}
-		{{form.as_p}}
-		<input type="hidden" name="template_path" value={{template_path}}/>
-		<p><input type="submit" value="search"/>
-	</form>
+<!--
+Needs passed: lector,form(SearchLectorForm),error{True,False}
+-->
+SEARCH LECTOR:
+{% if error == True %}
+	<p><b>Such lector does not exist</b></p>
+{% endif %}
+<form action="/school/search_lector/" method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	<input type="hidden" name="template_path" value={{template_path}}/>
+	<p><input type="submit" value="search"/>
+</form>
