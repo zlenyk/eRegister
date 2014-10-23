@@ -3,9 +3,10 @@ from django.http import HttpResponseRedirect
 from datetime import datetime
 from school.forms import *
 from school import views as school_views
+from school.forms import *
 
 def add_payment_page(request):
-	return render(request,"finances/add_payment.html")
+	return render(request,"finances/add_payment_page.html",{'form':SearchStudentForm,'student':None,'error':False})
 
 def add_payment(request):
 	if request.method == 'POST':

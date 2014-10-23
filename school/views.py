@@ -27,13 +27,13 @@ def create_student(request):
 		return render(request, 'school/create_student.html',{'error':False,'form':student_form})
 
 def search_group_page(request):
-	return render(request,"school/search_group.html",{'error':False,'form':SearchGroupForm,'group':None})
+	return render(request,"school/search_group_page.html",{'error':False,'form':SearchGroupForm,'group':None})
 	
 def search_student_page(request):
-	return render(request,"school/search_student.html",{'error':False,'form':SearchStudentForm,'student':None})
+	return render(request,"school/search_student_page.html",{'error':False,'form':SearchStudentForm,'student':None})
 
 def search_lector_page(request):
-	return render(request,"school/search_lector.html",{'error':False,'form':SearchLectorForm,'lector':None})
+	return render(request,"school/search_lector_page.html",{'error':False,'form':SearchLectorForm,'lector':None})
 
 
 def search_group(request):
