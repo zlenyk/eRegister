@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from school.forms import *
 from school.models import Group,Student
 from django.core.urlresolvers import reverse
+from finances import views as finances_views
+from finances.models import *
 
 def create_group(request):
 	if request.method == 'POST':
@@ -46,11 +48,16 @@ def search_group(request):
 			group = group_form.retrieve_group()
 			if group == None:
 				error = True
+			else:
+				return render_show_group_page(request,url,group)
 		else:
 			error = True
 		return render(request,url,{'error':error,'form':SearchGroupForm,'group':group})
 	#this should not happen
 	return render(request,"/school/search_group.html",{'error':error,'form':SearchGroupForm(),'group':group})
+
+def render_show_group_page(request,url,group):
+	return render(request,url,{'group':group})
 
 def search_student(request):
 	student = None
@@ -62,10 +69,16 @@ def search_student(request):
 			student = student_form.retrieve_student()
 			if student == None:
 				error = True
+			else:
+				return render_show_student_page(request,url,student)
 		else:
 			error = True
 		return render(request,url,{'error':error,'form':SearchStudentForm,'student':student})
 	return render(request,"/school/search_student.html",{'error':error,'form':SearchStudentForm,'student':student})
+
+def render_show_student_page(request,url,student):
+	incomes = Income.get_student_incomes(student)
+	return render(request,url,{'student':student,'incomes':incomes})
 
 def search_lector(request):
 	lector = None
@@ -77,7 +90,12 @@ def search_lector(request):
 			lector = lector_form.retrieve_lector()
 			if lector == None:
 				error = True
+			else:
+				return render_show_lector_page(request,url,lector)
 		else:
 			error = True
 		return render(request,url,{'error':error,'form':SearchLectorForm,'lector':lector})
 	return render(request,"school/search_lector.html",{'error':error,'form':SearchLectorForm,'lector':lector})
+
+def render_lector_group_page(request,url,lector):
+	return render(request,url,{'student':lector})

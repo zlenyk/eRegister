@@ -5,4 +5,4 @@ from django.core.exceptions import ValidationError
 class AddPaymentForm(ModelForm):
 	class Meta:
 		model = Income
-		fields = ['amount','date','student_id','title']
+		fields = ['amount','date','student','title']

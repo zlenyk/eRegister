@@ -1,14 +1,14 @@
 from django.db import models
+from school.models import Student
 
 class Income(models.Model):
 	amount = models.IntegerField()
 	date = models.DateField()
 	title = models.CharField(max_length=100)
-	student_id = models.IntegerField()
+	student = models.ForeignKey(Student)
 	@staticmethod
-	def get_student_incomes(id):
-		return Income.objects.filter(student_id = id)
-
+	def get_student_incomes(student):
+		return Income.objects.filter(student = student)
 
 class Outcome(models.Model):
 	amount = models.IntegerField()
