@@ -5,6 +5,9 @@ from school.models import Group,Student
 from django.core.urlresolvers import reverse
 from finances import views as finances_views
 from finances.models import *
+from utilities.models import Constants
+
+#####################################
 
 def create_group(request):
 	if request.method == 'POST':
@@ -12,9 +15,11 @@ def create_group(request):
 		if group_form.is_valid():
 			group_form.save()
 			return HttpResponseRedirect('/home/')
+		else:
+			return render(request,Constants.CREATE_GROUP_PAGE,{'error':True,'form':group_form})
 	else:
 		group_form = CreateGroupForm()
-		return render(request, 'school/create_group.html',{'form':group_form})
+		return render(request, Constants.CREATE_GROUP_PAGE,{'error':False,'form':group_form})
 
 def create_student(request):
 	if request.method == 'POST':
@@ -23,20 +28,23 @@ def create_student(request):
 			student_form.save()
 			return HttpResponseRedirect('/home/')
 		else:
-			return render(request, 'school/create_student.html',{'error':True,'form':student_form})
+			return render(request,Constants.CREATE_STUDENT_PAGE ,{'error':True,'form':student_form})
 	else:
 		student_form = CreateStudentForm()
-		return render(request, 'school/create_student.html',{'error':False,'form':student_form})
+		return render(request, Constants.CREATE_STUDENT_PAGE,{'error':False,'form':student_form})
+
+#######################################
 
 def search_group_page(request):
-	return render(request,"school/search_group_page.html",{'error':False,'form':SearchGroupForm,'group':None})
+	return render(request,Constants.SEARCH_GROUP_PAGE,{'error':False,'form':SearchGroupForm,'group':None})
 	
 def search_student_page(request):
-	return render(request,"school/search_student_page.html",{'error':False,'form':SearchStudentForm,'student':None})
+	return render(request,Constants.SEARCH_STUDENT_PAGE,{'error':False,'form':SearchStudentForm,'student':None})
 
 def search_lector_page(request):
-	return render(request,"school/search_lector_page.html",{'error':False,'form':SearchLectorForm,'lector':None})
+	return render(request,Constants.SEARCH_LECTOR_PAGE,{'error':False,'form':SearchLectorForm,'lector':None})
 
+##################################
 
 def search_group(request):
 	group = None
@@ -54,10 +62,7 @@ def search_group(request):
 			error = True
 		return render(request,url,{'error':error,'form':SearchGroupForm,'group':group})
 	#this should not happen
-	return render(request,"/school/search_group.html",{'error':error,'form':SearchGroupForm(),'group':group})
-
-def render_show_group_page(request,url,group):
-	return render(request,url,{'group':group})
+	return render(request,Constants.ERROR); 
 
 def search_student(request):
 	student = None
@@ -74,11 +79,8 @@ def search_student(request):
 		else:
 			error = True
 		return render(request,url,{'error':error,'form':SearchStudentForm,'student':student})
-	return render(request,"/school/search_student.html",{'error':error,'form':SearchStudentForm,'student':student})
-
-def render_show_student_page(request,url,student):
-	incomes = Income.get_student_incomes(student)
-	return render(request,url,{'student':student,'incomes':incomes})
+	#this should not happen
+	return render(request,Constants.ERROR); 
 
 def search_lector(request):
 	lector = None
@@ -95,7 +97,17 @@ def search_lector(request):
 		else:
 			error = True
 		return render(request,url,{'error':error,'form':SearchLectorForm,'lector':lector})
-	return render(request,"school/search_lector.html",{'error':error,'form':SearchLectorForm,'lector':lector})
+	#this should not happen
+	return render(request,Constants.ERROR); 
 
-def render_lector_group_page(request,url,lector):
-	return render(request,url,{'student':lector})
+##############################################
+
+def render_show_student_page(request,url,student):
+	incomes = Income.get_student_incomes(student)
+	return render(request,url,{'student':student,'incomes':incomes})
+
+def render_show_group_page(request,url,group):
+	return render(request,url,{'group':group})
+
+def render_show_lector_page(request,url,lector):
+	return render(request,url,{'lector':lector})

@@ -4,9 +4,9 @@ from datetime import datetime
 from school.forms import *
 from school.models import Student
 from finances.forms import *
-
+from utilities.models import Constants
 def add_payment_page(request):
-	return render(request,"finances/add_payment_page.html",{'form':SearchStudentForm,'student':None,'error':False})
+	return render(request,Constants.ADD_PAYMENT_PAGE,{'form':SearchStudentForm,'student':None,'error':False})
 
 def add_payment(request):
 	if request.method == 'POST':
@@ -21,6 +21,5 @@ def add_payment(request):
 		if form.is_valid():
 			form.save()
 		else:
-			return render(request,"finances/add_payment_page.html",{'form':SearchStudentForm,'student':None,'error':True})
-			
-		return HttpResponseRedirect('/home/')
+			return render(request,Constants.ADD_PAYMENT_PAGE,{'form':SearchStudentForm,'student':student,'error':True})		
+	return HttpResponseRedirect('/home/')

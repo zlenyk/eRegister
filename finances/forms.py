@@ -6,3 +6,4 @@ class AddPaymentForm(ModelForm):
 	class Meta:
 		model = Income
 		fields = ['amount','date','student','title']
+

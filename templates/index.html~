@@ -1,9 +1,0 @@
-<html>
-<head></head>
-<body>
-    {% if user.is_authenticated %}
-    Hello {{user.username}}
-    {% endif %}
-
-<body>
-</html>
