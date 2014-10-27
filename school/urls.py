@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^search_group_page/', views.search_group_page),
     url(r'^search_student_page/', views.search_student_page),
     url(r'^search_lector_page/', views.search_lector_page),
+    url(r'^add_student_to_group/', views.add_student_to_group),
 	)

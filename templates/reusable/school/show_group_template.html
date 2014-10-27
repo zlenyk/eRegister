@@ -1,5 +1,8 @@
-<p>{{group.name}}</p>
-<p>Lector: {{group.lector}}</p>
-{% for student in group.students.all %}
-	<li>{{student}}<li>
-{% endfor %}
+<h3>{{group.name}}</h3>
+<p><b>Lector: {{group.lector}}</b></p>
+<p>
+	Students:
+	{% for student in group.students.all %}
+		<li>{{student}}</li>
+	{% endfor %}
+</p>

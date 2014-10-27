@@ -1,4 +1,5 @@
 from django.db import models
+import os
 from school.models import Student
 
 class Income(models.Model):
@@ -11,8 +12,7 @@ class Income(models.Model):
 		return Income.objects.filter(student = student)
 	
 	def __unicode__(self):
-		s = self.title + '\n' + self.amount + '\n' + self.date
-		return smart_text(s,encoding='utf-8', strings_only=False, errors='strict')
+		return self.title + os.linesep + str(self.amount) + os.linesep + str(self.date)
 
 
 class Outcome(models.Model):
