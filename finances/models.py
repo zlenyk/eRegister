@@ -9,6 +9,11 @@ class Income(models.Model):
 	@staticmethod
 	def get_student_incomes(student):
 		return Income.objects.filter(student = student)
+	
+	def __unicode__(self):
+		s = self.title + '\n' + self.amount + '\n' + self.date
+		return smart_text(s,encoding='utf-8', strings_only=False, errors='strict')
+
 
 class Outcome(models.Model):
 	amount = models.IntegerField()
