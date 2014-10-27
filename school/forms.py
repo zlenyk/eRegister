@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from school.models import Student,Group,Lector
+from school.models import *
 from django.core.exceptions import ValidationError
 class CreateStudentForm(ModelForm):
 	class Meta:
@@ -71,3 +71,8 @@ class SearchGroupForm(ModelForm):
 		name = self.cleaned_data.get('name')
 		return Group.get_by_name(name)
 #################
+
+class AddPaymentForm(ModelForm):
+	class Meta:
+		model = Income
+		exclude = ['date','student']

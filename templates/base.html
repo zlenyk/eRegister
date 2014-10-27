@@ -17,8 +17,8 @@
 	<div id="header">
 		<h1>Dziennik <span class="off">elektroniczny</span></h1>
             	<h2>A template by Bryant Smith</h2>
-        </div>   
-        
+        </div>
+
         <div id="menu">
  	{% if user.is_authenticated %}
 		{{user.first_name}} {{user.last_name}}
@@ -33,10 +33,10 @@
 		{% endif %}
 		</ul>
         </div>
-        
+
         <div id="leftmenu">
 		<div id="leftmenu_top"></div>
-	
+
 		<div id="leftmenu_main">
 			<ul>
 			{% if user.is_authenticated%}
@@ -50,7 +50,7 @@
 				<li><a href = '/school/search_group_page/'> MANAGE GROUPS </a></li>
 				<li><a href = '/school/search_lector_page/'> SEARCH LECTOR </a></li>
 				<li><a href = '/school/search_student_page/'> SEARCH STUDENT </a></li>
-				<li><a href = '/finances/add_payment_page/'> ADD PAYMENT </a></li>
+				<li><a href = '/school/add_payment_page/'> ADD PAYMENT </a></li>
 				{% endif %}
 			{% endif %}
 			</ul>
