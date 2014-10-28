@@ -18,6 +18,9 @@ class Student(models.Model):
 	def get_student_by_id(id):
 		return Student.objects.get(id=id)
 
+	def get_payments(self):
+		return Income.get_student_incomes(self)
+	
 	def __unicode__(self):
 		return self.first_name + ' ' + self.last_name
 
